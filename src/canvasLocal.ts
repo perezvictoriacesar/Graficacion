@@ -13,19 +13,20 @@ export class CanvasLocal {
       
   public constructor(g: CanvasRenderingContext2D, canvas: HTMLCanvasElement){
     this.graphics = g;
-    this.rWidth = 6;
-    this.rHeight= 4;
-    this.maxX = canvas.width - 1
+    this.rWidth = 10;
+    this.rHeight= 10;
+    this.maxX = canvas.width - 1;
     this.maxY = canvas.height - 1;
     this.pixelSize = Math.max(this.rWidth / this.maxX, this.rHeight / this.maxY);
     this.centerX = this.maxX/2;
     this.centerY = this.maxY/2;
   }
 
-  /*iX(x: number):number{return Math.round(this.centerX + x/this.pixelSize);}
+  iX(x: number):number{return Math.round(this.centerX + x/this.pixelSize);}
   iY(y: number): number{ return Math.round(this.centerY - y / this.pixelSize); }
-  */
+
   drawLine(x1: number, y1: number, x2: number, y2:number) {
+    
     this.graphics.beginPath();
     this.graphics.moveTo(x1, y1);
     this.graphics.lineTo(x2, y2);
@@ -37,13 +38,18 @@ export class CanvasLocal {
     return Math.sin(x*2.5);
   }*/
 
-
   paint() {
-    
-
-    this.drawLine(100.5,100, 500,100.5);
-    this.drawLine(500, 100, 300, 400);
-    this.drawLine(300, 400, 100,100);
+    //this.drawLine(-100,0,this.maxX,0);
+    this.drawLine(this.iX(-5), this.iY(0), this.iX(5), this.iY(0));
+    this.drawLine(this.iX(0), this.iY(-5), this.iX(0), this.iY(5));
+    this.drawLine(this.iX(0), this.iY(0), this.iX(3.14159), this.iY(2));
+/*
+    this.drawLine(-100,0,this.maxX,0);
+    this.drawLine(0,this.maxY,this.maxX,this.maxY);
+    this.drawLine(0,0,0,this.maxY);
+    this.drawLine(this.maxX,0,this.maxX,this.maxY);
+    this.drawLine(10,this.maxY-10, 100,this.maxY-100);
+  
    /* this.drawLine(this.iX(-3), this.iY(0), this.iX(3), this.iY(0));
     this.drawLine(this.iX(0), this.iY(2), this.iX(0), this.iY(-2));
 
@@ -93,12 +99,12 @@ export class CanvasLocal {
     xA1, yA1, xB1, yB1, xC1, yC1, p, q;
      q = 0.05;
     p = 1 - q;
-    /*xA = xCenter - sideHalf;
+    xA = xCenter - sideHalf;
     yA = yCenter - 0.5 * h;
     xB = xCenter + sideHalf;
     yB = yA;
     xC = xCenter;
-    yC = yCenter + 0.5 * h; *
+    yC = yCenter + 0.5 * h; 
 
     for (let m = 0; m < 4; m++){
       for (let n = 0; n < 4; n++){
@@ -120,7 +126,7 @@ export class CanvasLocal {
           yC1 = p * yC + q * yA;
           xA = xA1; xB = xB1; xC = xC1;
           yA = yA1; yB = yB1; yC = yC1;
-        }
+        }*
       }
     }
 

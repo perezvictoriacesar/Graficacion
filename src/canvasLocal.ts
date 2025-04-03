@@ -75,16 +75,54 @@ export class CanvasLocal {
     res = Math.ceil(max / pot) * pot;
     return res;
   }
+  barra(x:number, y:number, alt:number):void{
+    this.drawLine(this.iX(x), this.iY(0), this.iX(x-0.5), this.iY(0.5));
+    this.drawLine(this.iX(x-0.5), this.iY(0.5), this.iX(x-0.5), this.iY(y+alt));
+    this.drawLine(this.iX(x-0.5), this.iY(y+alt), this.iX(x), this.iY(y+alt-0.5));
+    this.drawLine(this.iX(x), this.iY(y+alt-0.5), this.iX(x+0.5), this.iY(y+alt));
+    this.drawLine(this.iX(x+0.5), this.iY(y+alt), this.iX(x+0.5), this.iY(0.5));
+    this.drawLine(this.iX(x+0.5), this.iY(0.5), this.iX(x), this.iY(0));
+    this.drawLine(this.iX(x), this.iY(0), this.iX(x), this.iY(y+alt-0.5));
+    this.graphics.strokeStyle = 'gray';
+    this.drawLine(this.iX(x-0.5), this.iY(y+alt), this.iX(x-0.5), this.iY(this.rHeight-2));
+    this.drawLine(this.iX(x), this.iY(y+alt-0.5), this.iX(x), this.iY(this.rHeight-2.5));
+    this.drawLine(this.iX(x+0.5), this.iY(y+alt), this.iX(x+0.5), this.iY(this.rHeight-2));
+    this.drawLine(this.iX(x-0.5), this.iY(this.rHeight-2), this.iX(x), this.iY(this.rHeight-1.5));
+    this.drawLine(this.iX(x+0.5), this.iY(this.rHeight-2), this.iX(x), this.iY(this.rHeight-1.5));
+    this.drawLine(this.iX(x-0.5), this.iY(this.rHeight-2), this.iX(x), this.iY(this.rHeight-2.5));
+    this.drawLine(this.iX(x+0.5), this.iY(this.rHeight-2), this.iX(x), this.iY(this.rHeight-2.5));
+    this.graphics.strokeStyle = 'black';
+  }
+
 
   paint() {
-    //let h: number[] = [420, 100, 160, 20];
-    //let h: number[] = [1150, 1780, 860, 1260];
-    let h: number[] = [27, 10, 16, 2];
+    
+    //let h: number[] = [20, 100, 160, 420];
+    //let h: number[] = [1150, 1780, 860, 1260, 1500];
+    let h: number[] = [27, 10, 16,90,50,75];
     let maxEsc: number;
     let colors: string[]= ['magenta', 'red', 'green', 'yellow'];
 
     maxEsc = this.maxH(h);
-    this.graphics.strokeStyle = 'black';
+    let i=0;
+    for(let x= 0; x < 8; x+=(8/(h.length*1)) ){
+      this.graphics.strokeStyle = colors[i%4];
+      if(i<h.length)
+        this.barra(x,0, h[i++]*(this.rHeight-2)/maxEsc);
+    }
+    i=0;
+    for (let x = 0; x < 8; x += (8/(h.length*1)) ){
+      this.graphics.strokeStyle = colors[i%4];
+      if(i<h.length)
+        this.graphics.strokeText(h[i++]+"", this.iX(x), this.iY(-0.5));
+    }
+    
+/*
+    this.barra(3,0, 10*(this.rHeight-2)/maxEsc);
+
+    this.barra(5,0, 16*(this.rHeight-2)/maxEsc);
+    this.barra(7,0, 2*(this.rHeight-2)/maxEsc);
+    /*this.graphics.strokeStyle = 'black';
     this.drawLine(this.iX(0), this.iY(0), this.iX(8), this.iY(0));
     this.drawLine(this.iX(0), this.iY(0), this.iX(0), this.iY(6));
     //las 6 unidades se dividen entre 4 periodos de lineas cada una 
@@ -119,7 +157,7 @@ export class CanvasLocal {
       this.graphics.strokeText(colors[y], this.iX(9), this.iY(5 - y));
       this.graphics.fillStyle = colors[y];
       this.graphics.fillRect(this.iX(8.5), this.iY(5 - y), 10, 10);
-    }
+    }*/
     
   }
 

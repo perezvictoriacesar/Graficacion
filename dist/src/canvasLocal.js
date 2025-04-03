@@ -21,6 +21,9 @@ export class CanvasLocal {
     /*fx(x:number):number {
       return Math.sin(x*2.5);
     }*/
+    dibujarPixel(x, y) {
+        this.graphics.fillRect(this.iX(x), this.iY(y + 1), this.iX(1) - this.iX(0), this.iX(1) - this.iX(0));
+    }
     paint() {
         //this.drawLine(-100,0,this.maxX,0);
         this.drawLine(this.iX(0), this.iY(0), this.iX(25), this.iY(0));
@@ -29,6 +32,12 @@ export class CanvasLocal {
         */
         let tamX = 25;
         let tamY = 25;
+        this.graphics.fillStyle = "red";
+        for (let i = 0; i < 25; i++)
+            for (let j = 0; j < 25; j++)
+                if (Math.random() > 0.5)
+                    this.dibujarPixel(i, j);
+        this.graphics.fillStyle = "black";
         for (let x = 0; x <= tamX; x++)
             this.drawLine(this.iX(x), this.iY(0), this.iX(x), this.iY(tamX));
         for (let y = 0; y <= tamY; y++)

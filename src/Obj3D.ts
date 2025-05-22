@@ -70,7 +70,7 @@ export class Obj3D{
  
       do{   // Skip the line "Faces:"
          ch = inp.readChar(); count++;
-      } while (!inp.eof() && ch != '\n');
+      } while (!inp.eof() && ch != '\n'&& ch !='\r');
       
       if (count < 6 || count > 8){
          console.log("Invalid input file"); return this.failing();

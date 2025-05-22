@@ -26,7 +26,10 @@ var Input = /** @class */ (function () {
         return (ch.trim() == "");
     };
     Input.prototype.isEnter = function (ch) {
-        return (ch == '\n');
+        return (ch == '\n' || ch == '\r');
+    };
+    Input.prototype.isREnter = function (ch) {
+        return (ch == '\r');
     };
     Input.prototype.isDigit = function (ch) {
         return (ch >= '0' && ch <= '9');
@@ -39,7 +42,7 @@ var Input = /** @class */ (function () {
         var ch;
         do {
             ch = this.readChar();
-        } while (this.isWhiteSpace(ch) || this.isEnter(ch));
+        } while (this.isWhiteSpace(ch) || this.isEnter(ch) || this.isREnter(ch));
         if (ch === '-') {
             neg = true;
             ch = this.readChar();

@@ -38,6 +38,7 @@ var Obj3D = /** @class */ (function () {
         return false;
     };
     Obj3D.prototype.readObject = function (inp) {
+        //debugger;
         for (;;) {
             var i = inp.readInt();
             if (inp.fails()) {
@@ -58,10 +59,11 @@ var Obj3D = /** @class */ (function () {
         this.shiftToOrigin(); // Origin in center of object.
         var ch;
         var count = 0;
+        //debugger;
         do { // Skip the line "Faces:"
             ch = inp.readChar();
             count++;
-        } while (!inp.eof() && ch != '\n');
+        } while (!inp.eof() && ch != '\n' && ch != '\r');
         if (count < 6 || count > 8) {
             console.log("Invalid input file");
             return this.failing();

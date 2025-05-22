@@ -33,6 +33,9 @@ export class Input
   isEnter(ch:string):boolean {
     return (ch=='\n');
   }
+  isREnter(ch:string):boolean {
+    return (ch=='\r');
+  }
 
   isDigit(ch: string): boolean{
     return (ch >= '0' && ch <= '9');
@@ -45,7 +48,7 @@ export class Input
     let ch:string;
     do {
       ch = this.readChar();
-    } while (this.isWhiteSpace(ch)||this.isEnter(ch));
+    } while (this.isWhiteSpace(ch)||this.isEnter(ch)||this.isREnter(ch));
     if (ch === '-') {
       neg = true;
       ch = this.readChar();

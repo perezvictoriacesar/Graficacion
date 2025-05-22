@@ -46,6 +46,7 @@ export class Obj3D
   }
 
    readObject(inp:Input ): boolean{
+      //debugger;
       for (; ;){
          let i = inp.readInt();
          if (inp.fails()){inp.clear(); break;}
@@ -63,10 +64,10 @@ export class Obj3D
       this.shiftToOrigin(); // Origin in center of object.
       let ch:string;
       let count = 0;
-   
+      //debugger;
       do{   // Skip the line "Faces:"
          ch = inp.readChar(); count++;
-      } while (!inp.eof() && ch != '\n');
+      } while (!inp.eof() && ch != '\n' && ch !='\r');
       
       if (count < 6 || count > 8){
          console.log("Invalid input file"); return this.failing();
